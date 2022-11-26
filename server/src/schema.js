@@ -3,9 +3,10 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   # write your schema definitions here
   type Query {
-    "Get tracks array for homepage grid"
     tracksForHome: [Track!]!
-    spaceCats: [SpaceCat]
+    tracksForHomeFetch: [Track!]!
+    modules: [Module!]!
+    track: Track
   }
 
   "A track is a group of Modules that teaches about a specific topic"
@@ -21,6 +22,10 @@ const typeDefs = gql`
     length: Int
     "The number of modules this track contains"
     modulesCount: Int
+    "The track's complete description, can be in Markdown format"
+    description: String
+    "The number of times a track has been viewed"
+    numberOfViews: Int
   }
 
   "Author of a complete Track"
@@ -32,17 +37,13 @@ const typeDefs = gql`
     photo: String
   }
 
-  type SpaceCat {
+  "A Module is a single unit of teaching. Multiple Modules compose a Track"
+  type Module {
     id: ID!
-    name: String!
-    age: Int
-    missions: [Mission]
-  }
-
-  type Mission {
-    id: ID!
-    name: String!
-    description: String!
+    "The Module's title"
+    title: String!
+    "The Module's length in minutes"
+    length: Int
   }
 `;
 

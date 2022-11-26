@@ -1,2 +1,3 @@
-# apollo-odyssey
-apollo 튜토리얼
+# Odyssey Lift-off Study
+
+[Apollo Tutorial](https://www.apollographql.com/tutorials)

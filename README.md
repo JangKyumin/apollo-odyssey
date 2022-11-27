@@ -195,3 +195,24 @@ modules: ({id}, _, {dataSources}) => {
 위 코드를 보면 부모로부터 id 속성을 검색하기 위한 첫 번째 매개 변수를 재구성한다. args 매개 변수는 필요하지 않으므로 밑줄이 될 수 있으며 dataSources 속성의 세 번째 컨텍스트 매개 변수를 재구성할 수 있다.
 
 내부에서 dataSources.trackAPI.getTrackModules 메서드를 호출하여 track의 ID를 전달한 결과를 반환할 수 있다.
+
+## Apollo Tutorial Step 4
+
+### Mutation
+
+데이터를 수정하려면 다른 유형의 GraphQL 연산인 쓰기 연산인 돌연변이를 사용해야 한다.
+
+Query 유형과 마찬가지로 Mutation 유형은 스키마의 진입점 역할을 한다. 우리가 지금까지 사용해온 스키마 정의 언어, 즉 SDL과 같은 구문을 따른다.
+
+업데이트 작업의 특정 작업을 설명하는 동사로 add, delete, create를 붙이는 것이 좋다.
+
+### Query vs Mutation
+
+Query와 Mutation는 모두 GraphQL 작업의 유형이다. Query는 항상 데이터를 검색하는 읽기 작업입니다. Mutation는 항상 데이터를 수정하는 쓰기 작업입니다. Query 필드와 마찬가지로 Mutation 유형의 필드도 GraphQL API의 진입점입니다.
+
+### Apollo 클라이언트 캐시
+
+![](https://res.cloudinary.com/apollographql/image/upload/e_sharpen:50,c_scale,q_90,w_1440,fl_progressive/v1624653957/odyssey/lift-off-part4/doodle_client_cache_xzmvha.png)
+[이미지 출처 : https://www.apollographql.com/tutorials/lift-off-part4/our-mutation-in-the-browser]
+
+ Mutation API로 전송되는 동안에도 여전히 캐시에서 페이지를 로드한다. 성공적으로 반환되면 numberOfViews에 대한 업데이트된 값을 다시 받는다. Apollo Client는 이 track의 ID를 보고, 캐시에서 검색하고, numberOfViews 필드를 업데이트하는 작업을 배후에서 수행하고 있다. 캐시가 업데이트되면 UI도 업데이트된다.
